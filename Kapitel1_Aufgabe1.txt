@@ -1,0 +1,22 @@
+420078 (RequestMessage)			| 01 (Structure)	| 0000 0120
+	420077 (RequestHeader) 			| 01 (Structure) 	| 0000 0038
+		420069 (ProtovolVersion)		| 01 (Structure) 	| 0000 0020
+			42006A (PV Major)				| 02 (Integer)		| 0000 0004 				| 0000 0001 0000 0000 (1) 
+			42006B (PV Minor)				| 02 (Integer)		| 0000 0004					| 0000 0000 0000 0000 (0)
+		42000D (Batch Count)			| 02 (Integer)		| 0000 0004					| 0000 0001 0000 0000 (1)
+	42000F (Batch Item)				| 01 (Structure) 	| 0000 00D8
+		42005C (Operation)				| 05 (Enumeration)	| 0000 0004	(Re-key)		| 0000 0001 0000 0000 (Create)
+		420079 (Request Payload)		| 01 (Structure)	| 0000 00C0
+			420057 (Object Type)			| 05 (Enumeration)	| 0000 0004 (Private Key)	| 0000 0002 0000 0000 (Symmetric Key)
+			420091 (Template-Attribute)		| 01 (Structure)	| 0000 00A8
+				420008 (Attribute)				| 01 (Structure)	| 0000 0030
+					42000A (Attribute Name)			| 07 (Text String)	| 0000 0017					| 4372 7970 746F 6772 6170 6869 6320 416C 676F 7269 7468 6D00 (Cryptographic Algorithm)
+					42000B (Attribute Value)		| 05 (Enumeration)	| 0000 0004 (Re-key)		| 0000 0003 0000 0000 (AES)
+
+				420008 (Attribute)				| 01 (Structure)	| 0000 0030
+					42000A (Attribute Name)			| 07 (Text String)	| 0000 0014					| 4372 7970 746F 6772 6170 6869 6320 4C65 6E67 7468 0000 0000 (Cryptographic Length)
+					42000B (Attribute Value)		| 02 (Integer)		| 0000 0004					| 0000 0080 0000 0000 (128)
+					  
+				420008 (Attribute)				| 01 (Structure)	| 0000 0030
+					42000A (Attribute Name)			| 07 (Text String)	| 0000 0018					| 4372 7970 746F 6772 6170 6869 6320 5573 6167 6520 4D61 736B (Cryptographic Usage Mask)
+					42000B (Attribute Value)		| 02 (Integer)		| 0000 0004					| 0000 000C 0000 0000 (Encrypt)
