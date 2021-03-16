@@ -38,11 +38,11 @@ public class HttpRequest implements Runnable {
 		if (fileName.endsWith(".htm") || fileName.endsWith(".html")) {
 			return "text/html";
 		} // if
-		if (null == null) { // TODO
-			return null; // TODO
+		if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")) {
+			return "image/jpeg";
 		} // if
-		if (null == null) { // TODO
-			return null; // TODO
+		if (fileName.endsWith(".ico")) {
+			return "image/x-icon";
 		} // if
 		return "application/octet-stream";
 	} // getContentType
@@ -88,7 +88,7 @@ public class HttpRequest implements Runnable {
 		// Dateiname abfragen
 		String fileName = tokens.nextToken();
 		// Aktuelles Verzeichnis (.) vorne hinzufügen
-		fileName = "." + fileName;
+		fileName = "F:\\Repositories\\InI_C\\Kapitel2\\src\\webServerB\\" + fileName;
 
 		// Datei öffnen
 		FileInputStream fis = null;
@@ -102,23 +102,25 @@ public class HttpRequest implements Runnable {
 		// dreiteilige Antwort erzeugen:
 		// http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html
 		String statusLine = null;
+		String cookieLine = null;
 		String contentTypeLine = null;
 		String entityBody = null;
 		if (fileExists) {
 			// Normalfall
-			statusLine = null; // TODO
+			statusLine = "HTTP/1.1 200 OK";
 			contentTypeLine = "Content-type: " + getContentType(fileName) + CRLF;
+			cookieLine = "set-cookie: 1678";
 		} else {
 			// Fehlerfall
-			statusLine = null; // TODO
-			contentTypeLine = null; // TODO
+			statusLine = "HTTP/1.1 404 Not Found";
+			contentTypeLine = "Content-type: text/html";
 			entityBody = "<HTML><HEAD><TITLE>Not Found</TITLE></HEAD><BODY>Not Found</BODY></HTML>";
 		} // if
 
 		// Statuszeile schicken
 		os.writeBytes(statusLine);
 		// Antworttyp schicken
-		os.writeBytes(null); // TODO
+		os.writeBytes(contentTypeLine);
 		// Leere Zeile schicken, um das Ende der Kopfzeilen zu signalisieren
 		os.writeBytes(CRLF);
 		// Antwort schicken
