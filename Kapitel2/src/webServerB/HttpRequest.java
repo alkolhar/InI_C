@@ -87,7 +87,7 @@ public class HttpRequest implements Runnable {
 		tokens.nextToken();
 		// Dateiname abfragen
 		String fileName = tokens.nextToken();
-		// Aktuelles Verzeichnis (.) vorne hinzufügen
+		// Pfad zum Verzeichnis hinzufügen
 		fileName = "F:\\Repositories\\InI_C\\Kapitel2\\src\\webServerB\\" + fileName;
 
 		// Datei öffnen
@@ -121,6 +121,10 @@ public class HttpRequest implements Runnable {
 		os.writeBytes(statusLine);
 		// Antworttyp schicken
 		os.writeBytes(contentTypeLine);
+		// Cookie setzen
+		if (cookieLine != null) {
+			//os.writeBytes(cookieLine);
+		}
 		// Leere Zeile schicken, um das Ende der Kopfzeilen zu signalisieren
 		os.writeBytes(CRLF);
 		// Antwort schicken
