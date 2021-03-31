@@ -19,7 +19,7 @@ package webServerA;
 import java.net.*;
 
 public class WebServer {
-	private final static int port = 6789;
+	private final static int port = 6790;
 
 	public static void main(String argv[]) throws Exception {
 
