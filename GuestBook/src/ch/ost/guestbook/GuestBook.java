@@ -3,8 +3,10 @@
    ------------------ */
 
 /*  Computerkommunikation & Verteilte Systeme 2012/2013, Rene Pawlitzek, NTB  */
+package ch.ost.guestbook;
 
 import java.io.*;
+
 import java.util.*;
 import java.text.*;
 import javax.servlet.*;
