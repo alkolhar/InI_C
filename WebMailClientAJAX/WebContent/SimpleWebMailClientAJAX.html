@@ -1,0 +1,98 @@
+<!--  SimpleWebMailClient.html -->
+
+
+<!--  Computerkommunikation & Verteilte Systeme 2012/2013, Rene Pawlitzek, NTB  -->
+
+
+<html>
+<head>
+<title>Simple Web Mail Client</title>
+<script type="text/javascript">
+	var request = new XMLHttpRequest();
+
+	function sendMail() {
+		var mailServer = top.document.MailForm.MailServer.value;
+		var fromAddress = top.document.MailForm.FromAddress.value;
+		var toAddress = top.document.MailForm.ToAddress.value;
+		var subject = top.document.MailForm.Subject.value;
+		var text = top.document.MailForm.Text.value;
+		var url = "/WebMailClientAJAX/SendMail?MailServer="
+				+ escape(mailServer) + "&FromAddress=" + escape(fromAddress)
+				+ "&ToAddress=" + escape(toAddress) + "&Subject="
+				+ escape(subject) + "&Text=" + escape(text);
+		// alert(url);
+		request.open("GET", url, true);
+		request.onreadystatechange = updatePage;
+		request.send(null);
+	} // sendMail
+
+	function updatePage() {
+		if (request.readyState == 4) {
+			if (request.status == 200) {
+				// alert(request.responseText);
+				document.getElementById('ErrorMessage').innerHTML = request.responseText;
+			} // if
+		} // if
+	} // updatePage
+</script>
+</head>
+<body>
+	<h1>Simple Web Mail Client</h1>
+	<form name="MailForm">
+		<table>
+			<tr>
+				<th>
+					<p>Mail Server:</p>
+				</th>
+				<td>
+					<input type="TEXT" name="MailServer" size="60" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<p>From:</p>
+				</th>
+				<td>
+					<input type="TEXT" name="FromAddress" size="60" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<p>To:</p>
+				</th>
+				<td>
+					<input type="TEXT" name="ToAddress" size="60" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<p>Subject:</p>
+				</th>
+				<td>
+					<input type="TEXT" name="Subject" size="60" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<p>Text:</p>
+				</th>
+				<td>
+					<textarea name="Text" rows="15" cols="60">your message</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<p>
+						<input type="BUTTON" value=" Send " onClick="sendMail();" />
+						<input type="RESET" value=" Clear " />
+					</p>
+				</td>
+			</tr>
+		</table>
+		<p style="color: blue" id="ErrorMessage"></p>
+	</form>
+</body>
+</html>
+
+
+<!-- End of File -->

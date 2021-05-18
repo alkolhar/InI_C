@@ -1,0 +1,84 @@
+<!-- SimpleWebMailClientAngularJS.html -->
+
+
+<!-- Computerkommunikation & Verteilte Systeme 2015, Rene Pawlitzek, NTB  -->
+
+
+<html>
+   <head>
+     <title>Simple AngularJS Web Mail Client</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>     
+   </head>   
+   <body ng-app="SimpleWebClientApp">
+   
+   
+     <!--  View -->
+     <div ng-controller="WebMailController">
+	     <h1>Simple AngularJS Web Mail Client</h1>
+	     <p></p>
+	     <form name="MailForm">
+	       <table>
+	         <tr>
+	           <th>Mail Server:</th>
+	           <td><input name="MailServer" type="text" ng-model="MailServer" style="width:300px" /></td>
+	         </tr>     
+	         <tr>
+	           <th>From:</th>
+	           <td><input name="FromAddress" type="text" ng-model="FromAddress" style="width:300px" /></td>
+	         </tr>     
+	         <tr>
+	           <th>To:</th>
+	           <td><input name="ToAddress" type="text" ng-model="ToAddress" style="width:300px" /></td>
+	         </tr> 
+	         <tr>
+	           <th>Subject:</th>
+	           <td><input name="Subject" type="text" ng-model="Subject" style="width:300px" /></td>
+	         </tr>
+	         <tr>
+	           <th>Text:</th>
+	           <td><textarea name="Text" ng-model="Text" style="width:300px;height:200px"></textarea></td>
+	         </tr>
+	         <tr>
+	           <td colspan="2">
+	             <button ng-click="send()">Send</button>
+	             <button ng-click="reset()">Clear</button>
+	           </td>
+	         </tr>
+	       </table>
+	       <p style="color: blue" ng-bind="Confirmation"></p>   
+	     </form>
+     </div>
+     
+     
+     <!-- Controller -->
+     <script>
+       var webMailApp = angular.module("SimpleWebClientApp", []);
+       webMailApp.controller("WebMailController", function($scope, $http) {
+    	   $scope.reset = function() {
+    		   $scope.MailServer = "";
+    		   $scope.FromAddress = "";
+    		   $scope.ToAddress = "";
+    		   $scope.Subject = "";
+    		   $scope.Text = "";
+    	   };
+    	   $scope.send = function() {
+        	 var url = "/WebMailClientAngularJS/SendMail?MailServer=" + escape($scope.MailServer) + 
+  			       "&FromAddress=" + escape($scope.FromAddress) + 
+  			       "&ToAddress=" + escape($scope.ToAddress) +
+  			       "&Subject=" + escape($scope.Subject) +
+  			       "&Text=" + escape($scope.Text);
+  		     $http.get(url).success(function(response) {
+			       $scope.Confirmation = response;
+		       }).error(function(response) {
+		    	   $scope.Confirmation = response;
+		       });
+    	   };
+       });
+     </script>
+     
+     
+   </body>  
+</html>
+
+
+<!-- End of File -->

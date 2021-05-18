@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Guestbook</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="GuestBook.css" MEDIA="all" />
+</HEAD>
+<BODY>
+	<FORM ACTION="GuestBookTemplate.html" METHOD="POST">
+		<DIV CLASS="Title">Guestbook</DIV>
+		<DIV CLASS="Text">Add your comment here:</DIV>
+		<DIV CLASS="Text">
+			<TEXTAREA CLASS="entryfield" NAME="Comment"></TEXTAREA>
+		</DIV>
+		<DIV CLASS="Text">
+			<INPUT CLASS="button" TYPE="SUBMIT" VALUE="Add" />
+		</DIV>
+	</FORM>
+	<DIV CLASS="Text">
+		<REPEAT ID="Comments">
+		<DIV CLASS="Text">
+			Date:
+			<REPLACE ID="Date">26.9.2007</REPLACE>
+		</DIV>
+		<DIV CLASS="Text">
+			<REPLACE ID="Comment">Hello world!</REPLACE>
+		</DIV>
+		<BR />
+		</REPEAT>
+	</DIV>
+	<HR CLASS="Separator" />
+	<INCLUDE SRC="Copyright.html" />
+</BODY>
+</HTML>

@@ -1,0 +1,97 @@
+<!-- SimpleWebMailClientJQuery.html -->
+
+
+<!-- Computerkommunikation & Verteilte Systeme 2014/2015, Rene Pawlitzek, NTB  -->
+
+
+<html>
+   <head>
+     <title>Simple JQuery Web Mail Client</title>
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+     <script type="text/javascript">
+      
+				function sendMail() {
+					
+					var mailServer = $("#MailServer").attr("value");
+					var fromAddress = $("#FromAddress").attr("value");
+					var toAddress = $("#ToAddress").attr("value");
+					var subject = $("#Subject").attr("value");
+					var text = $("#Text").attr("value");
+					
+					$.ajax({
+					
+						// request method
+						method: 'GET',
+						
+						// URL of the request
+						url: 'http://localhost:8080/WebMailClientJQuery/SendMail',
+						
+						// specify a timeout in ms
+						timeout: 20000,
+						
+						// prepare data
+						data: {
+							MailServer:   mailServer,
+							FromAddress:  fromAddress,
+							ToAddress:    toAddress,
+							Subject:      subject,
+							Text:         text
+						},
+						
+						// success callback with result from server
+						success: function(response) {
+							$("#ErrorMessage").append(response);
+						},
+						
+						// error handler
+						error: function() {
+							// do nothing
+						},
+						
+						// prevent browsers from caching
+						cache: false
+						
+					});
+				}
+	
+     </script>
+   </head>
+   <body>
+     <h1>Simple JQuery Web Mail Client</h1>
+     <p></p>
+     <form name="MailForm">
+       <table>
+         <tr>
+           <th>Mail Server:</th>
+           <td><input id="MailServer" style="width:300px" /></td>
+         </tr>     
+         <tr>
+           <th>From:</th>
+           <td><input  id="FromAddress" style="width:300px" /></td>
+         </tr>     
+         <tr>
+           <th>To:</th>
+           <td><input id="ToAddress" style="width:300px" /></td>
+         </tr> 
+         <tr>
+           <th>Subject:</th>
+           <td><input  id="Subject" style="width:300px" /></td>
+         </tr>
+         <tr>
+           <th>Text:</th>
+           <td><textarea  id="Text" style="width:300px;height:200px">your message</textarea></td>
+         </tr>
+         <tr>
+           <td colspan="2">
+             <button id="SendButton" type="BUTTON" onClick="sendMail();">Send</button>
+             <button id="ClearButton" type="RESET">Clear</button>
+           </td>
+         </tr>
+       </table>
+       <p style="color: blue" id="ErrorMessage"></p>   
+     </form>
+   </body>
+</html>
+
+
+<!-- End of File -->

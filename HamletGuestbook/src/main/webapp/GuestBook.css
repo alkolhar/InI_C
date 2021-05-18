@@ -1,0 +1,38 @@
+div.title {
+	font-family: Helvetica, sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+	text-align: left;
+	background-color: lightblue;
+	margin-bottom: 10px;
+}
+
+div.text {
+	font-family: Helvetica, sans-serif;
+	font-size: 10pt;
+	text-align: left;
+}
+
+div.copyright {
+	font-family: Helvetica, sans-serif;
+	font-size: 8pt;
+	text-align: left;
+}
+
+textarea.entryfield {
+	font-family: Helvetica, sans-serif;
+	font-size: 10pt;
+	text-align: left;
+	width: 400px;
+	height: 80px;
+}
+
+hr.separator {
+	height: 1px;
+	color: black;
+}
+
+input.button {
+	font-family: Helvetica, sans-serif;
+	font-size: 10pt;
+}

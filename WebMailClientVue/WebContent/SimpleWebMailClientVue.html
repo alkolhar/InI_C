@@ -1,0 +1,53 @@
+<!--  SimpleWebMailClientVue.html -->
+
+
+<!--  Computerkommunikation & Verteilte Systeme 2018/2019, Rene Pawlitzek, NTB  -->   
+
+
+<html>
+   <head>
+     <title>Simple Web Mail Client (Vue/Axios)</title>
+   </head>
+   <body>
+     <h1>Simple Web Mail Client (Vue/Axios)</h1>
+     <div id="SendMailVue">
+       <table>
+         <tr>
+           <th><p>Mail Server:</p></th>
+           <td><input v-model="mailServer" type="TEXT" name="MailServer" size="60" /></td>
+         </tr>     
+         <tr>
+           <th><p>From:</p></th>
+           <td><input v-model="from" type="TEXT" name="FromAddress" size="60" /></td>
+         </tr>     
+         <tr>
+           <th><p>To:</p></th>
+           <td><input v-model="to" type="TEXT" name="ToAddress" size="60" /></td>
+         </tr> 
+         <tr>
+           <th><p>Subject:</p></th>
+           <td><input v-model="subject" type="TEXT" name="Subject" size="60" /></td>
+         </tr>
+         <tr>
+           <th><p>Text:</p></th>
+           <td><textarea v-model="text" name="Text" rows="15" cols="60">your message</textarea></td>
+         </tr>
+         <tr>
+           <td colspan="2">
+             <p>
+               <button v-on:click="send">Send</button>
+               <button v-on:click="clear">Clear</button>
+             </p> 
+           </td>
+         </tr>
+       </table>
+       <p style="color: blue">{{ message }}</p>   
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+     <script src="index.js"></script>       
+   </body>
+</html>
+
+
+<!-- End of File -->

@@ -21,14 +21,10 @@ public class GuestBook extends HttpServlet {
 	private static final String htmlHeader = "<HTML>\n" + "  <HEAD>\n" + "    <TITLE>Guestbook</TITLE>\n"
 			+ "    <LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"GuestBook.css\" MEDIA=\"all\" />\n" + "  </HEAD>\n"
 			+ "  <BODY>\n" + "    <FORM ACTION=\"GuestBook.html\" METHOD=\"POST\">\n"
-			+ "      <DIV CLASS=\"Title\">Guestbook</DIV>\n"
-			+ "      <DIV CLASS=\"Text\">Add your comment here:</DIV>\n"
+			+ "      <DIV CLASS=\"Title\">Gästebuch</DIV>\n" + "      <DIV CLASS=\"Text\">Tragen Sie sich ein</DIV>\n"
 			+ "      <DIV CLASS=\"Text\"><TEXTAREA CLASS=\"entryfield\" NAME=\"Comment\"></TEXTAREA></DIV>\n"
 			+ "      <DIV CLASS=\"Text\"><INPUT CLASS=\"button\" TYPE=\"SUBMIT\" VALUE=\"Add\" /></DIV>\n"
 			+ "    </FORM>";
-
-	private static final String htmlFooter = "    <HR CLASS=\"Separator\" />\n" + "    <DIV CLASS=\"Copyright\">\n"
-			+ "      (C) René Pawlitzek, 2007-2013.\n" + "    </DIV>\n" + "  </BODY>\n" + "</HTML>";
 
 	private static final String fileName = "Comments.dat";
 
@@ -124,7 +120,6 @@ public class GuestBook extends HttpServlet {
 			PrintWriter out = res.getWriter();
 			out.println(htmlHeader);
 			printComments(out);
-			out.println(htmlFooter);
 			out.flush();
 			out.close();
 		} catch (Exception e) {

@@ -1,0 +1,106 @@
+<!-- SimpleWebMailClientDojo.html -->
+
+
+<!-- Computerkommunikation & Verteilte Systeme 2012/2013, Rene Pawlitzek, NTB  -->
+
+
+<html>
+   <head>
+     <title>Simple Dojo Web Mail Client</title>
+     
+     <!-- Dojo Includes -->
+     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.6.1/dojo/resources/dojo.css">         
+     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.6.1/dijit/themes/tundra/tundra.css" media="screen"/> 
+     <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.6.1/dojo/dojo.xd.js" data-dojo-config="isDebug: true, parseOnLoad: true"></script> 
+     
+     <script type="text/javascript">
+        dojo.require("dojo.parser");
+        dojo.require("dijit.form.Button");
+        dojo.require("dijit.form.TextBox");
+        dojo.require("dijit.form.Textarea");
+        
+				function sendMail() {
+					
+					var mailServer = dijit.byId("MailServer").attr("value");
+					var fromAddress = dijit.byId("FromAddress").attr("value");
+					var toAddress = dijit.byId("ToAddress").attr("value");
+					var subject = dijit.byId("Subject").attr("value");
+					var text = dijit.byId("Text").attr("value");
+					
+					// alert(mailServer);
+					
+					// xhrGet takes care of AJAX
+					dojo.xhrGet({
+						
+						// URL of the request
+						url: "http://localhost:8080/WebMailClientDojo/SendMail",
+						
+						// specify a timeout in ms
+						timeout: 2000,
+						
+						// prepare content
+						content: {
+							MailServer:   mailServer,
+							FromAddress:  fromAddress,
+							ToAddress:    toAddress,
+							Subject:      subject,
+							Text:         text
+						},
+						
+						// success callback with result from server
+						load: function(response) {
+							dojo.byId("ErrorMessage").innerHTML = response;
+						},
+						
+						// error handler
+						error: function() {
+							// do nothing
+						},
+						
+						// generate an extra GET variable to prevent browsers from caching
+						preventCache: true
+						
+					});
+				}
+	
+     </script>
+   </head>
+   <body class="tundra">
+     <h1>Simple Dojo Web Mail Client</h1>
+     <p></p>
+     <form name="MailForm">
+       <table>
+         <tr>
+           <th>Mail Server:</th>
+           <td><input id="MailServer" dojoType="dijit.form.TextBox" style="width:300px" /></td>
+         </tr>     
+         <tr>
+           <th>From:</th>
+           <td><input  id="FromAddress" dojoType="dijit.form.TextBox" style="width:300px" /></td>
+         </tr>     
+         <tr>
+           <th>To:</th>
+           <td><input id="ToAddress" dojoType="dijit.form.TextBox" style="width:300px" /></td>
+         </tr> 
+         <tr>
+           <th>Subject:</th>
+           <td><input  id="Subject" dojoType="dijit.form.TextBox" style="width:300px" /></td>
+         </tr>
+         <tr>
+           <th>Text:</th>
+           <td><textarea  id="Text" dojoType="dijit.form.Textarea" style="width:300px;height:200px">your message</textarea></td>
+         </tr>
+         <tr>
+           <td colspan="2">
+             <button id="SendButton" dojoType="dijit.form.Button" type="BUTTON" onClick="sendMail();">Send</button>
+             <button id="ClearButton" dojoType="dijit.form.Button" type="RESET">Clear</button>
+           </td>
+         </tr>
+       </table>
+       <p style="color: blue" id="ErrorMessage"></p>   
+     </form>
+   </body>
+</html>
+
+
+<!-- End of File -->
